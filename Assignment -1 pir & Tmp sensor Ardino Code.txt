@@ -1,0 +1,56 @@
+int pirsensor =2;
+
+
+int buzzer =7;
+int pirvalue =0;
+float sensor=A3;
+float analog;
+float voltage;
+float celcius;
+
+
+void setup()
+{
+  pinMode(pirsensor, INPUT);
+  pinMode(sensor, INPUT);
+  pinMode(buzzer, OUTPUT);
+   Serial.begin(9600);
+
+}
+
+void loop()
+{
+  
+  analog=analogRead(sensor);
+ 
+    voltage=analog*5.0/1023;
+  celcius=(tempv-0.5)*100.0;
+  
+  
+   
+  Serial.print("temperature:");
+  Serial.println(celcius);
+  if (celcius >=60)
+  {
+  
+    
+    tone(buzzer, 200, 100);
+  
+  }
+  delay(100);
+    
+  pirvalue = digitalRead(pirsensor);
+  
+
+  if (pirvalue == HIGH)
+  {
+  
+    
+    tone(buzzer, 1000, 500);
+  
+  }
+  
+  
+  
+  delay(100);
+}
